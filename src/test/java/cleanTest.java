@@ -3,31 +3,27 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import static io.trueautomation.client.TrueAutomationHelper.byTa;
-import static io.trueautomation.client.TrueAutomationHelper.ta;
-
-public class TestWithoutInitialLocator {
+public class cleanTest {
 
     private final static long DEFAULT_SLEEP_TIMEOUT = 20;
 
     private WebDriver driver;
 
-    private By generalDonateBtn = byTa("masterPass:generalDonateBtn");
-    private By USD100 = byTa("masterPass:100USD");
-    private By firstName = byTa("masterPass:firstName");
-    private By lastName = byTa("masterPass:lastName");
-    private By email = byTa("masterPass:email");
-    private By clickToPayBtn = byTa("masterPass:clickPay");
-    private By masterPassBtn = byTa("masterPass:masterPassBtn");
-    private By cardNumber = byTa("checkout:cardNumber");
-    
+    private By generalDonateBtn;
+    private By USD100;
+    private By firstName;
+    private By lastName;
+    private By email;
+    private By clickToPayBtn;
+    private By masterPassBtn;
+    private By cardNumber;
+
     @BeforeTest
     public void beforeTest() {
         driver = new TrueAutomationDriver();
@@ -38,24 +34,23 @@ public class TestWithoutInitialLocator {
     @Test
     public void exampleTest() throws InterruptedException {
         driver.get("https://us.movember.com/donate");
-        Assert.assertTrue(isElementVisible(generalDonateBtn), "Movember page is not loaded");
 
-        driver.findElement(generalDonateBtn).click();
-        Assert.assertTrue(isElementVisible(USD100), "Movember details page is not loaded");
+        // Assert: wait donate btn
 
-        driver.findElement(USD100).click();
-        driver.findElement(firstName).sendKeys("Testingname");
-        driver.findElement(lastName).sendKeys("Testinglastname");
-        driver.findElement(email).sendKeys("testingMail@gmail.com");
-        //Thread.sleep(2000);
-        driver.findElement(clickToPayBtn).click();
+        // Click donate btn
+        // Assert: wait usd 100 btn
 
-        driver.findElement(masterPassBtn).click();
 
-        switchCheckoutWindow();
+        // Click usd 100 btn
+        // fill first name & last name & email
+        // Click click to pay btn
 
-        Assert.assertTrue(isElementVisible(cardNumber), "Checkout window is not loaded");
+        // Click master-card widget
 
+
+        // switchCheckoutWindow();
+
+        // Assert: wait card number field
     }
 
     @AfterTest
